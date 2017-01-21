@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url] [![Dependency status][dependency-image]][dependency-url]
 
 * Студент: [Максим Басманов](https://up.htmlacademy.ru/javascript/8/user/156554).
-* Наставник: Денис Верхотуров.
+* Наставник: [Денис Верхотуров] (https://htmlacademy.ru/profile/id56756).
 
 ---
 
