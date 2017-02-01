@@ -40,15 +40,28 @@ address.setAttribute('required', true);
 
 var time = document.querySelector('#time');
 var timeout = document.querySelector('#timeout');
-var options = time.getElementsByTagName('option');
+var optionsTime = time.getElementsByTagName('option');
+var optionsTimeout = timeout.getElementsByTagName('option');
 var value;
 var selectedTime = function() {
-  Array.prototype.forEach.call(options, function (option) {
+  Array.prototype.forEach.call(optionsTime, function (option) {
     if (option.hasAttribute('selected')) {
-      value = option.getAttribute(value);
+      value = option.getAttribute('value');
+ console.log(value);
       return;
     };
   });
+  Array.prototype.forEach.call(optionsTimeout, function (option) {
+    if (option.hasAttribute('selected')) {
+      option.removeAttribute('value');
+      return;
+    } else {
+    if (option.getAttribute('value') === value) {
+      option.setAttribute('selected');
+      return;
+    };
+    };
+  });
 };
-selectedTime();
-console.log(value);
+time.addEventListener('click', selectedTime);
+
