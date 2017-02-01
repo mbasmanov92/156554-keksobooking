@@ -1,37 +1,54 @@
-var tokyoPinMap = document.querySelector('.tokyo__pin-map');
+'use strict';
+
+var pins = document.querySelectorAll('.pin');
+var activePin = document.querySelector('.pin.pin--active');
 var dialog = document.querySelector('.dialog');
 var dialogClose = document.querySelector('.dialog__close');
-var clickPin;
-var target;
-var dialogClickOpen;
 var dialogClickClose;
-
-dialogClickOpen = function(event) {
-  target = event.target;
-  while (target != this) {
-    if (target.className === 'pin') {
-      highlight(target);
-      return;
+var title;
+var price;
+var address;
+Array.prototype.forEach.call(pins, function (pin) {
+  pin.addEventListener('click', function () {
+    if (activePin) {
+      activePin.classList.remove('pin--active');
     }
-    target = target.parentNode;
-  }
-}
+    pin.classList.add('pin--active');
+    dialog.style.display = "block";
+    activePin = pin;
+  });
+});
 
-function highlight(node) {
-  if (clickPin) {
-    clickPin.classList.remove('pin--active');
-  }
-  clickPin = node;
-  clickPin.classList.add('pin--active');
-  dialog.style.display = "block";
-}
-
-tokyoPinMap.addEventListener ('click', dialogClickOpen);
-
-dialogClickClose = function() {
+dialogClickClose = function () {
   dialog.style.display = "none";
-  var clickActive = tokyoPinMap.querySelector('.pin--active');
-  clickActive.classList.remove('pin--active');
+  activePin.classList.remove('pin--active');
 }
-
 dialogClose.addEventListener ('click', dialogClickClose);
+
+title = document.querySelector('#title');
+title.setAttribute('required', true);
+title.setAttribute('minlength', 30);
+title.setAttribute('maxlength', 1000);
+
+price = document.querySelector('#price');
+price.setAttribute('required', true);
+price.setAttribute('min', 1000);
+price.setAttribute('max', 1000000);
+
+address = document.querySelector('#address');
+address.setAttribute('required', true);
+
+var time = document.querySelector('#time');
+var timeout = document.querySelector('#timeout');
+var options = time.getElementsByTagName('option');
+var value;
+var selectedTime = function() {
+  Array.prototype.forEach.call(options, function (option) {
+    if (option.hasAttribute('selected')) {
+      value = option.getAttribute(value);
+      return;
+    };
+  });
+};
+selectedTime();
+console.log(value);
