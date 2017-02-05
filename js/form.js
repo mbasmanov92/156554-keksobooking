@@ -23,13 +23,12 @@ var tokyoPinMap;
 var ENTER;
 var ESC;
 var clickPinKeyboard;
-var clickedPin;
 
 clickPinMouse = function () {
   clickedPin = event.target;
   if (clickedPin.className === 'rounded') {
     clickedPin = clickedPin.parentNode;
-  };
+  }
   activePin.classList.remove('pin--active');
   activePin.setAttribute('aria-pressed', false);
   clickedPin.classList.add('pin--active');
@@ -47,14 +46,14 @@ clickPinKeyboard = function () {
   if (event.keyCode === ENTER) {
     if (clickedPin.className === 'rounded') {
       clickedPin = clickedPin.parentNode;
-    };
+    }
     activePin.classList.remove('pin--active');
     activePin.setAttribute('aria-pressed', false);
     clickedPin.classList.add('pin--active');
     clickedPin.setAttribute('aria-pressed', true);
     dialog.style.display = 'block';
     activePin = clickedPin;
-  };
+  }
   if (event.keyCode === ESC) {
     dialog.style.display = 'none';
     activePin.classList.remove('pin--active');
