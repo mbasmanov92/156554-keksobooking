@@ -1,5 +1,4 @@
 'use strict';
-var pins = document.querySelectorAll('.pin');
 var activePin = document.querySelector('.pin.pin--active');
 var dialog = document.querySelector('.dialog');
 var dialogClose = document.querySelector('.dialog__close');
@@ -18,20 +17,55 @@ var roomNumber;
 var capacity;
 var changeRoomNumber;
 var roomNumberValue;
-Array.prototype.forEach.call(pins, function (pin) {
-  pin.addEventListener('click', function () {
-    if (activePin) {
-      activePin.classList.remove('pin--active');
+var clickPinMouse;
+var clickedPin;
+var tokyoPinMap;
+var ENTER;
+var ESC;
+var clickPinKeyboard;
+
+clickPinMouse = function () {
+  clickedPin = event.target;
+  if (clickedPin.className === 'rounded') {
+    clickedPin = clickedPin.parentNode;
+  }
+  activePin.classList.remove('pin--active');
+  activePin.setAttribute('aria-pressed', false);
+  clickedPin.classList.add('pin--active');
+  clickedPin.setAttribute('aria-pressed', true);
+  dialog.style.display = 'block';
+  activePin = clickedPin;
+};
+tokyoPinMap = document.querySelector('.tokyo__pin-map');
+tokyoPinMap.addEventListener('click', clickPinMouse);
+
+ENTER = 13;
+ESC = 27;
+clickPinKeyboard = function () {
+  clickedPin = event.target;
+  if (event.keyCode === ENTER) {
+    if (clickedPin.className === 'rounded') {
+      clickedPin = clickedPin.parentNode;
     }
-    pin.classList.add('pin--active');
+    activePin.classList.remove('pin--active');
+    activePin.setAttribute('aria-pressed', false);
+    clickedPin.classList.add('pin--active');
+    clickedPin.setAttribute('aria-pressed', true);
     dialog.style.display = 'block';
-    activePin = pin;
-  });
-});
+    activePin = clickedPin;
+  }
+  if (event.keyCode === ESC) {
+    dialog.style.display = 'none';
+    activePin.classList.remove('pin--active');
+    activePin.setAttribute('aria-pressed', false);
+  }
+};
+tokyoPinMap.addEventListener('keydown', clickPinKeyboard);
 
 dialogClickClose = function () {
   dialog.style.display = 'none';
   activePin.classList.remove('pin--active');
+  activePin.setAttribute('aria-pressed', false);
 };
 dialogClose.addEventListener('click', dialogClickClose);
 
