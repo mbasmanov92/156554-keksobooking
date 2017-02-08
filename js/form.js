@@ -2,6 +2,7 @@
 var activePin = document.querySelector('.pin.pin--active');
 var dialog = document.querySelector('.dialog');
 var dialogClose = document.querySelector('.dialog__close');
+var tokyoPinMap = document.querySelector('.tokyo__pin-map');
 var dialogClickClose;
 var title;
 var price;
@@ -19,55 +20,10 @@ var changeRoomNumber;
 var roomNumberValue;
 var clickPinMouse;
 var clickedPin;
-var tokyoPinMap;
-var ENTER;
-var ESC;
+var ENTER = 13;
+var ESC = 27;
 var clickPinKeyboard;
-
-clickPinMouse = function () {
-  clickedPin = event.target;
-  if (clickedPin.className === 'rounded') {
-    clickedPin = clickedPin.parentNode;
-  }
-  activePin.classList.remove('pin--active');
-  activePin.setAttribute('aria-pressed', false);
-  clickedPin.classList.add('pin--active');
-  clickedPin.setAttribute('aria-pressed', true);
-  dialog.style.display = 'block';
-  activePin = clickedPin;
-};
-tokyoPinMap = document.querySelector('.tokyo__pin-map');
-tokyoPinMap.addEventListener('click', clickPinMouse);
-
-ENTER = 13;
-ESC = 27;
-clickPinKeyboard = function () {
-  clickedPin = event.target;
-  if (event.keyCode === ENTER) {
-    if (clickedPin.className === 'rounded') {
-      clickedPin = clickedPin.parentNode;
-    }
-    activePin.classList.remove('pin--active');
-    activePin.setAttribute('aria-pressed', false);
-    clickedPin.classList.add('pin--active');
-    clickedPin.setAttribute('aria-pressed', true);
-    dialog.style.display = 'block';
-    activePin = clickedPin;
-  }
-  if (event.keyCode === ESC) {
-    dialog.style.display = 'none';
-    activePin.classList.remove('pin--active');
-    activePin.setAttribute('aria-pressed', false);
-  }
-};
-tokyoPinMap.addEventListener('keydown', clickPinKeyboard);
-
-dialogClickClose = function () {
-  dialog.style.display = 'none';
-  activePin.classList.remove('pin--active');
-  activePin.setAttribute('aria-pressed', false);
-};
-dialogClose.addEventListener('click', dialogClickClose);
+var target;
 
 title = document.querySelector('#title');
 title.setAttribute('required', true);
@@ -81,6 +37,7 @@ price.setAttribute('max', 1000000);
 
 address = document.querySelector('#address');
 address.setAttribute('required', true);
+
 
 time = document.querySelector('#time');
 timeout = document.querySelector('#timeout');
