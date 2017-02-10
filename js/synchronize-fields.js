@@ -14,7 +14,6 @@ timeout = document.querySelector('#timeout'); //field2Name
 var timeValueMassive = ['После 12', 'После 13', 'После 14'];
 var timeoutValueMassive = ['Выезд до 12', 'Выезд до 13', 'Выезд до 14'];
 var proper = 'selectedIndex';
-synchronizeFields(time, timeout, timeValue, timeoutValue, proper);
 var synchronizeFields = functon(field1Name, field2Name, field1ValueMassive, field2ValueMassive, proper) {
   //  time = document.querySelector('#time');//field1Name
   //  timeout = document.querySelector('#timeout');//field2Name
@@ -75,4 +74,4 @@ var synchronizeFields = functon(field1Name, field2Name, field1ValueMassive, fiel
 //  };
 //  roomNumber.addEventListener('change', changeRoomNumber);
 }
-synchronizeFields(time, timeout, timeValue, timeoutValue, proper);
+synchronizeFields(time, timeout, timeValueMassive, timeoutValueMassive, proper);
