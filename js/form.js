@@ -24,6 +24,7 @@ var ENTER = 13;
 var ESC = 27;
 var clickPinKeyboard;
 var target;
+var initializePins;
 
 title = document.querySelector('#title');
 title.setAttribute('required', true);
@@ -88,3 +89,5 @@ changeRoomNumber = function () {
   }
 };
 roomNumber.addEventListener('change', changeRoomNumber);
+
+initializePins();

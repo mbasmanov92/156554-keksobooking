@@ -1,5 +1,5 @@
 'use strict';
-var initializePins = function {
+window.initializePins = function() {
   clickPinMouse = function (event) {
     target = event.target;
     while (target !== tokyoPinMap) {
