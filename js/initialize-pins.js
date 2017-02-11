@@ -1,5 +1,15 @@
 'use strict';
-window.initializePins = function() {
+var activePin = document.querySelector('.pin.pin--active');
+var dialog = document.querySelector('.dialog');
+var dialogClose = document.querySelector('.dialog__close');
+var tokyoPinMap = document.querySelector('.tokyo__pin-map');
+var dialogClickClose;
+var clickPinMouse;
+var ENTER = 13;
+var ESC = 27;
+var clickPinKeyboard;
+var target;
+window.initializePins = function () {
   clickPinMouse = function (event) {
     target = event.target;
     while (target !== tokyoPinMap) {
@@ -14,11 +24,11 @@ window.initializePins = function() {
       }
       target = target.parentNode;
     }
-  }
+  };
   tokyoPinMap.addEventListener('click', clickPinMouse);
 
   clickPinKeyboard = function (event) {
-    var target = event.target;
+    target = event.target;
     if (event.keyCode === ENTER) {
       while (target !== tokyoPinMap) {
         if (target.classList.contains('pin')) {
@@ -47,4 +57,4 @@ window.initializePins = function() {
     activePin.setAttribute('aria-pressed', false);
   };
   dialogClose.addEventListener('click', dialogClickClose);
-}
+};
