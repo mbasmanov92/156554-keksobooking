@@ -3,12 +3,6 @@
 window.initializePins = (function () {
   var activePin = document.querySelector('.pin.pin--active');
   var dialog = document.querySelector('.dialog');
-  var dialogClose = document.querySelector('.dialog__close');
-  var tokyoPinMap = document.querySelector('.tokyo__pin-map');
-  var clickPinMouse;
-  var ENTER = 13;
-  var ESC = 27;
-  var clickPin;
   var target;
 
   var activatePin = function () {
@@ -26,8 +20,12 @@ window.initializePins = (function () {
     activePin.setAttribute('aria-pressed', false);
   };
 
+  var dialogClose = document.querySelector('.dialog__close');
+  var tokyoPinMap = document.querySelector('.tokyo__pin-map');
+  var ENTER = 13;
+  var ESC = 27;
   return function () {
-    clickPin = function (event) {
+    var clickPin = function (event) {
       target = event.target;
       if (event.keyCode === ENTER || event.type === 'click') {
         while (target !== tokyoPinMap) {
@@ -45,5 +43,5 @@ window.initializePins = (function () {
     tokyoPinMap.addEventListener('keydown', clickPin);
     tokyoPinMap.addEventListener('click', clickPin);
     dialogClose.addEventListener('click', dialogClickClose);
-  }
+  };
 })();
