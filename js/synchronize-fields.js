@@ -9,5 +9,5 @@ window.synchronizeFields = (function () {
       field2Name[proper] = field2ValueMassive[index];
     };
     field1Name.addEventListener('change', changeField2Name);
-  }
+  };
 })();
