@@ -1,60 +1,47 @@
 'use strict';
-var activePin = document.querySelector('.pin.pin--active');
-var dialog = document.querySelector('.dialog');
-var dialogClose = document.querySelector('.dialog__close');
-var tokyoPinMap = document.querySelector('.tokyo__pin-map');
-var dialogClickClose;
-var clickPinMouse;
-var ENTER = 13;
-var ESC = 27;
-var clickPinKeyboard;
-var target;
-window.initializePins = function () {
-  clickPinMouse = function (event) {
-    target = event.target;
-    while (target !== tokyoPinMap) {
-      if (target.classList.contains('pin')) {
-        activePin.classList.remove('pin--active');
-        activePin.setAttribute('aria-pressed', false);
-        target.classList.add('pin--active');
-        target.setAttribute('aria-pressed', true);
-        dialog.style.display = 'block';
-        activePin = target;
-        break;
-      }
-      target = target.parentNode;
-    }
-  };
-  tokyoPinMap.addEventListener('click', clickPinMouse);
 
-  clickPinKeyboard = function (event) {
-    target = event.target;
-    if (event.keyCode === ENTER) {
-      while (target !== tokyoPinMap) {
-        if (target.classList.contains('pin')) {
-          activePin.classList.remove('pin--active');
-          activePin.setAttribute('aria-pressed', false);
-          target.classList.add('pin--active');
-          target.setAttribute('aria-pressed', true);
-          dialog.style.display = 'block';
-          activePin = target;
-          break;
-        }
-        target = target.parentNode;
-      }
-    }
-    if (event.keyCode === ESC) {
-      dialog.style.display = 'none';
-      activePin.classList.remove('pin--active');
-      activePin.setAttribute('aria-pressed', false);
-    }
-  };
-  tokyoPinMap.addEventListener('keydown', clickPinKeyboard);
+window.initializePins = (function () {
+  var activePin = document.querySelector('.pin.pin--active');
+  var dialog = document.querySelector('.dialog');
+  var target;
 
-  dialogClickClose = function () {
+  var activatePin = function () {
+    activePin.classList.remove('pin--active');
+    activePin.setAttribute('aria-pressed', false);
+    target.classList.add('pin--active');
+    target.setAttribute('aria-pressed', true);
+    dialog.style.display = 'block';
+    activePin = target;
+  };
+
+  var dialogClickClose = function () {
     dialog.style.display = 'none';
     activePin.classList.remove('pin--active');
     activePin.setAttribute('aria-pressed', false);
   };
-  dialogClose.addEventListener('click', dialogClickClose);
-};
+
+  var dialogClose = document.querySelector('.dialog__close');
+  var tokyoPinMap = document.querySelector('.tokyo__pin-map');
+  var ENTER = 13;
+  var ESC = 27;
+  return function () {
+    var clickPin = function (event) {
+      target = event.target;
+      if (event.keyCode === ENTER || event.type === 'click') {
+        while (target !== tokyoPinMap) {
+          if (target.classList.contains('pin')) {
+            activatePin();
+            break;
+          }
+          target = target.parentNode;
+        }
+      }
+      if (event.keyCode === ESC) {
+        dialogClickClose();
+      }
+    };
+    tokyoPinMap.addEventListener('keydown', clickPin);
+    tokyoPinMap.addEventListener('click', clickPin);
+    dialogClose.addEventListener('click', dialogClickClose);
+  };
+})();
