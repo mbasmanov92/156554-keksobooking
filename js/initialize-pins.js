@@ -10,7 +10,7 @@ window.initializePins = (function () {
     activePin.setAttribute('aria-pressed', false);
     target.classList.add('pin--active');
     target.setAttribute('aria-pressed', true);
-    dialog.style.display = 'block';
+//    dialog.style.display = 'block';
     activePin = target;
   };
 
@@ -31,6 +31,7 @@ window.initializePins = (function () {
         while (target !== tokyoPinMap) {
           if (target.classList.contains('pin')) {
             activatePin();
+            showCard(dialog);
             break;
           }
           target = target.parentNode;

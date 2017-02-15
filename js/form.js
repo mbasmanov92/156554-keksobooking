@@ -2,6 +2,7 @@
 
 var initializePins;
 var synchronizeFields;
+var showCard;
 
 var title = document.querySelector('#title');
 title.setAttribute('required', true);
