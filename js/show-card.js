@@ -1,5 +1,7 @@
 'use strict';
 
-window.showCard = (function (dialog) {
-  return dialog.style.display = 'block';
+window.showCard = (function () {
+  return function (dialog) {
+    dialog.style.display = 'block';
+  }
 })();

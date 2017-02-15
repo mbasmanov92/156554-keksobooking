@@ -4,20 +4,23 @@ window.initializePins = (function () {
   var activePin = document.querySelector('.pin.pin--active');
   var dialog = document.querySelector('.dialog');
   var target;
+  var setFocus;
 
   var activatePin = function () {
     activePin.classList.remove('pin--active');
     activePin.setAttribute('aria-pressed', false);
     target.classList.add('pin--active');
     target.setAttribute('aria-pressed', true);
-//    dialog.style.display = 'block';
     activePin = target;
   };
 
-  var dialogClickClose = function () {
+  var dialogClickClose = function (setFocus) {
     dialog.style.display = 'none';
     activePin.classList.remove('pin--active');
     activePin.setAttribute('aria-pressed', false);
+    if (typeof setFocus === 'function') {
+      setFocus();
+    }
   };
 
   var dialogClose = document.querySelector('.dialog__close');
@@ -38,7 +41,9 @@ window.initializePins = (function () {
         }
       }
       if (event.keyCode === ESC) {
-        dialogClickClose();
+        dialogClickClose(function() {
+          activePin.focus();
+        });
       }
     };
     tokyoPinMap.addEventListener('keydown', clickPin);
