@@ -1,6 +1,5 @@
 'use strict';
 
-var initializePins;
 var synchronizeFields;
 var showCard;
 
@@ -35,5 +34,3 @@ var capacity = document.querySelector('#capacity');
 var roomNumberValueMassive = ['1 комната', '2 комнаты', '100 комнат'];
 var capacityValueMassive = ['не для гостей', 'для 3 гостей', 'для 3 гостей'];
 synchronizeFields(roomNumber, capacity, roomNumberValueMassive, capacityValueMassive, 'value');
-
-initializePins();
