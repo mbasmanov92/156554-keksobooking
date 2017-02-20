@@ -2,7 +2,7 @@
 
 window.showCard = (function () {
   return function (dialog, dialogClose) {
-    dialog.style.display = 'block';
+    dialog.classList.add('dialog--active');
     dialogClose.focus();
   }
 })();

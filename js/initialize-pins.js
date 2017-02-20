@@ -17,7 +17,7 @@ window.initializePins = (function () {
   };
 
   var dialogClickClose = function () {
-    dialog.style.display = 'none';
+    dialog.classList.remove('dialog--active');
     activePin.classList.remove('pin--active');
     activePin.setAttribute('aria-pressed', false);
     if (typeof pinCallback === 'function') {
