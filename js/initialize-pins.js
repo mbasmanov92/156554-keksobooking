@@ -5,14 +5,15 @@ window.initializePins = (function () {
   var dialog = document.querySelector('.dialog');
   var dialogClose = document.querySelector('.dialog__close');
   var pinCallback = null;
+  var clickedPin;
 
   var activatePin = function (setPin) {
     activePin.classList.remove('pin--active');
     activePin.setAttribute('aria-pressed', false);
     setPin.classList.add('pin--active');
     setPin.setAttribute('aria-pressed', true);
+    clickedPin = setPin;
     activePin = setPin;
-    dialogClose.focus();
   };
 
   var dialogClickClose = function () {
@@ -34,7 +35,7 @@ window.initializePins = (function () {
       while (target !== tokyoPinMap) {
         if (target.classList.contains('pin')) {
           activatePin(target);
-          showCard(dialog);
+          showCard(dialog, dialogClose);
           break;
         }
         target = target.parentNode;
@@ -42,7 +43,7 @@ window.initializePins = (function () {
     }
     if (event.keyCode === ENTER) {
       pinCallback = function () {
-        activePin.focus();
+        clickedPin.focus();
       }
     }
     if (event.keyCode === ESC) {
