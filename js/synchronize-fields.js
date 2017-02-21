@@ -1,10 +1,9 @@
 'use strict';
 
 window.synchronizeFields = (function () {
-  var changeField2Name;
   var index;
   return function (field1Name, field1ValueMassive, field2ValueMassive, callback) {
-    changeField2Name = function () {
+    function changeField2Name () {
       index = field1Name.selectedIndex;
       callback( field2ValueMassive[index]);
     };

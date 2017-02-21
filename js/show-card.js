@@ -1,8 +1,7 @@
 'use strict';
 
 window.showCard = (function () {
-  return function (dialog, dialogClose) {
+  return function (dialog) {
     dialog.classList.add('dialog--active');
-    dialogClose.focus();
   }
 })();

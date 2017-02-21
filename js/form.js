@@ -23,7 +23,7 @@ var timeoutValueMassive = ['Выезд до 12', 'Выезд до 13', 'Выез
 var syncValuesTime = function (newValue) {
   timeout.value = newValue;
 };
-var syncValuesTimeout = function (newValue) {
+function syncValuesTimeout (newValue) {
   time.value = newValue;
 };
 synchronizeFields(time, timeValueMassive, timeoutValueMassive, syncValuesTime);
@@ -35,7 +35,7 @@ var priceValueMassive = ['5000', '0', '10000'];
 var syncValuesPriceMin = function (newValue) {
   price.min = newValue;
 };
-var syncValuesPricePlaceholder = function (newValue) {
+function syncValuesPricePlaceholder (newValue) {
   price.placeholder = newValue;
 };
 synchronizeFields(type, typeValueMassive, priceValueMassive, syncValuesPriceMin);
@@ -45,7 +45,7 @@ var roomNumber = document.querySelector('#room_number');
 var capacity = document.querySelector('#capacity');
 var roomNumberValueMassive = ['1 комната', '2 комнаты', '100 комнат'];
 var capacityValueMassive = ['не для гостей', 'для 3 гостей', 'для 3 гостей'];
-var syncValuesRoomNumber = function (newValue) {
+function syncValuesRoomNumber (newValue) {
   capacity.value = newValue;
 };
 synchronizeFields(roomNumber, roomNumberValueMassive, capacityValueMassive, syncValuesRoomNumber);
