@@ -8,16 +8,16 @@ window.initializePins = (function () {
   var clickedPin;
   var body = document.body;
 
-  function activatePin (setPin) {
+  function activatePin(setPin) {
     activePin.classList.remove('pin--active');
     activePin.setAttribute('aria-pressed', false);
     setPin.classList.add('pin--active');
     setPin.setAttribute('aria-pressed', true);
     clickedPin = setPin;
     activePin = setPin;
-  };
+  }
 
-  function onDialogClose () {
+  function onDialogClose() {
     dialog.classList.remove('dialog--active');
     activePin.classList.remove('pin--active');
     activePin.setAttribute('aria-pressed', false);
@@ -25,18 +25,18 @@ window.initializePins = (function () {
       pinCallback();
       pinCallback = null;
     }
-  };
-  
+  }
+
   var tokyoPinMap = document.querySelector('.tokyo__pin-map');
   var ENTER = 13;
   var ESC = 27;
-  function onPinClick (event) {
+  function onPinClick(event) {
     var target = event.target;
     if (event.keyCode === ENTER || event.type === 'click') {
       while (target !== tokyoPinMap) {
         if (target.classList.contains('pin')) {
           activatePin(target);
-          showCard(dialog);
+          window.showCard(dialog);
           break;
         }
         target = target.parentNode;
@@ -45,17 +45,17 @@ window.initializePins = (function () {
     if (event.keyCode === ENTER) {
       pinCallback = function () {
         clickedPin.focus();
-      }
+      };
     }
-  };
+  }
   tokyoPinMap.addEventListener('keydown', onPinClick);
   tokyoPinMap.addEventListener('click', onPinClick);
   dialogClose.addEventListener('click', onDialogClose);
-  
-  function onDialogEscClose (event) {
+
+  function onDialogEscClose(event) {
     if (event.keyCode === ESC && dialog.classList.contains('dialog--active')) {
       onDialogClose();
     }
-  };
+  }
   body.addEventListener('keydown', onDialogEscClose);
 })();
