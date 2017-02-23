@@ -651,3 +651,11 @@ select option:hover {
 .rounded {
     border-radius: 50%;
 }
+
+.dialog {
+  display: none;
+}
+
+.dialog--active {
+  display: block;
+}
