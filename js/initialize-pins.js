@@ -7,6 +7,8 @@ window.initializePins = (function () {
   var pinCallback = null;
   var clickedPin;
   var body = document.body;
+  
+
 
   function activatePin(setPin) {
     activePin.classList.remove('pin--active');
